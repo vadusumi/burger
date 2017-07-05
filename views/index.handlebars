@@ -1,0 +1,61 @@
+<div class="container text-center">
+	<div class="row">
+		<div class="jumbotron">
+			<h1 id="banner">Eat-Da-Burger!</h1>
+		</div>
+	</div>
+
+<!-- There's an error in displaying the database results, and I think it's occurring here. -->
+<!-- Within the controller 'GET' function, the console log for the handleBurgers object gets triggered, so it's pulling the data just fine. It's simply not displaying, and I don't know why, but it must be in here somewhere. -->
+
+	<div class="row">
+		<div class="col-lg-4" id="uneaten">
+			<ul>
+				{{#each handleBurgers}}
+					{{#unless this.devoured}}
+						<li>
+							{{this.burger_name}}
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="col-lg-4" id="middle">
+			<ul>
+				{{#each handleBurgers}}
+					{{#unless this.devoured}}
+						<li>
+							<form action="/{{this.id}}?_method=PUT" method="POST">
+								<input type="hidden" name="devoured" value="true">
+								<button type="submit">Devour it!</button>
+							</form>
+						</li>
+					{{/unless}}
+				{{/each}}
+			</ul>
+		</div>
+		<div class="col-lg-4" id="eaten">
+			<ul>
+				{{#each handleBurgers}}
+					{{#if this.devoured}}
+						<li>
+							{{this.burger_name}}
+						</li>
+					{{/if}}
+				{{/each}}
+			</ul>
+		</div>		
+	</div>
+	<div class="row">
+		<div class="col-lg-4 col-lg-offset-4" id="createBurger">
+			<h2>Add a Burger!</h2>
+			<form class="create-update-form" action="/" method="POST">
+				<div class="form-group">
+					<label for="burgerForm">Burger Name:</label>
+					<input type="text" id="burgerForm" name="name">
+					<button type="submit">Add Burger!</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
