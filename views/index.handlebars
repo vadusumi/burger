@@ -7,11 +7,10 @@
 
 <!-- There's an error in displaying the database results, and I think it's occurring here. -->
 <!-- Within the controller 'GET' function, the console log for the handleBurgers object gets triggered, so it's pulling the data just fine. It's simply not displaying, and I don't know why, but it must be in here somewhere. -->
-
 	<div class="row">
 		<div class="col-lg-4" id="uneaten">
 			<ul>
-				{{#each handleBurgers}}
+				{{#each burgerList}}
 					{{#unless this.devoured}}
 						<li>
 							{{this.burger_name}}
@@ -20,9 +19,9 @@
 				{{/each}}
 			</ul>
 		</div>
-		<div class="col-lg-4" id="middle">
+ 		<div class="col-lg-4" id="middle">
 			<ul>
-				{{#each handleBurgers}}
+				{{#each burgerList}}
 					{{#unless this.devoured}}
 						<li>
 							<form action="/{{this.id}}?_method=PUT" method="POST">
@@ -36,7 +35,7 @@
 		</div>
 		<div class="col-lg-4" id="eaten">
 			<ul>
-				{{#each handleBurgers}}
+				{{#each burgerList}}
 					{{#if this.devoured}}
 						<li>
 							{{this.burger_name}}

@@ -11,8 +11,10 @@ router.get("/", function(req, res){
 		var handleBurgers = {
 			burgers: data
 		};
-		console.log(handleBurgers);
-		res.render("index", handleBurgers);
+		console.log(JSON.parse(JSON.stringify(handleBurgers)));
+		var burgerList = handleBurgers.burgers;
+		console.log(burgerList)
+		res.render("index", {burgerList});
 	});
 });
 
